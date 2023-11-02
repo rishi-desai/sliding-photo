@@ -50,7 +50,7 @@ function sliderMouseLeave() {
 let currentImageIndex = 0;
 const imagePairs = [
   { left: "./JPEG/Alyssa.jpg", right: "./JPEG/Alyssa(1).jpg" },
-  { left: "./JPEG/Dave(1).jpg", right: "./JPEG/Dave.jpg" },
+  { left: "./JPEG/Dave.jpg", right: "./JPEG/Dave(1).jpg" },
   { left: "./JPEG/Janet.jpg", right: "./JPEG/Janet(1).jpg" },
   { left: "./JPEG/Joe.jpg", right: "./JPEG/Joe(1).jpg" },
   { left: "./JPEG/Marc.jpg", right: "./JPEG/Marc(1).jpg" },
@@ -76,4 +76,40 @@ document.addEventListener("keydown", function (event) {
   if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     swapImages(event.key === "ArrowLeft" ? "left" : "right");
   }
+});
+
+function preloadImages(imageArray) {
+  imageArray.forEach((imageInfo) => {
+    const img = new Image();
+    img.src = imageInfo.left;
+    const img2 = new Image();
+    img2.src = imageInfo.right;
+  });
+}
+
+// Assuming imagePairs is defined as shown previously and contains the URLs of images to be preloaded
+preloadImages(imagePairs);
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+function checkSwipeGesture() {
+  if (touchEndX < touchStartX && Math.abs(touchStartX - touchEndX) > 50) {
+    // Swiped Left, show next image pair
+    swapImages("right");
+  }
+  if (touchEndX > touchStartX && Math.abs(touchStartX - touchEndX) > 50) {
+    // Swiped Right, show previous image pair
+    swapImages("left");
+  }
+}
+
+// Event listeners for touch events
+slider.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+slider.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  checkSwipeGesture();
 });
