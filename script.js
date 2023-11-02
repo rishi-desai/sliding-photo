@@ -50,7 +50,7 @@ function sliderMouseLeave() {
 let currentImageIndex = 0;
 const imagePairs = [
   { left: "./JPEG/Alyssa.jpg", right: "./JPEG/Alyssa(1).jpg" },
-  { left: "./JPEG/Dave.jpg", right: "./JPEG/Dave(1).jpg" },
+  { left: "./JPEG/Dave(1).jpg", right: "./JPEG/Dave.jpg" },
   { left: "./JPEG/Janet.jpg", right: "./JPEG/Janet(1).jpg" },
   { left: "./JPEG/Joe.jpg", right: "./JPEG/Joe(1).jpg" },
   { left: "./JPEG/Marc.jpg", right: "./JPEG/Marc(1).jpg" },
