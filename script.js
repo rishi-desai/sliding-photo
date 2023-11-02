@@ -92,24 +92,27 @@ preloadImages(imagePairs);
 
 let touchStartX = 0;
 let touchEndX = 0;
+const swipeDetectionArea = document.getElementById("swipe-detection-area");
 
-function checkSwipeGesture() {
+function checkSwipeDirection() {
   if (touchEndX < touchStartX && Math.abs(touchStartX - touchEndX) > 50) {
-    // Swiped Left, show next image pair
+    // Swiped Left
     swapImages("right");
-  }
-  if (touchEndX > touchStartX && Math.abs(touchStartX - touchEndX) > 50) {
-    // Swiped Right, show previous image pair
+  } else if (
+    touchEndX > touchStartX &&
+    Math.abs(touchStartX - touchEndX) > 50
+  ) {
+    // Swiped Right
     swapImages("left");
   }
 }
 
-// Event listeners for touch events
-slider.addEventListener("touchstart", (e) => {
+// Event listeners for swipe detection area
+swipeDetectionArea.addEventListener("touchstart", (e) => {
   touchStartX = e.changedTouches[0].screenX;
 });
 
-slider.addEventListener("touchend", (e) => {
+swipeDetectionArea.addEventListener("touchend", (e) => {
   touchEndX = e.changedTouches[0].screenX;
-  checkSwipeGesture();
+  checkSwipeDirection();
 });
