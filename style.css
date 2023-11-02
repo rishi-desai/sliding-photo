@@ -112,3 +112,15 @@ body {
     --image-comparison-slider-width: 90vw;
   }
 }
+
+#swipe-detection-area {
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f0f0; /* Light grey background to see the area */
+  border: 1px dashed #ccc; /* Dashed border to indicate the area is interactive */
+}
+#swipe-detection-area p {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+}

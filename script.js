@@ -90,29 +90,56 @@ function preloadImages(imageArray) {
 // Assuming imagePairs is defined as shown previously and contains the URLs of images to be preloaded
 preloadImages(imagePairs);
 
-let touchStartX = 0;
-let touchEndX = 0;
+let startX;
+let startY;
+let distX;
+let threshold = 150; // Required min distance traveled to be considered swipe
+let restraint = 100; // Maximum distance allowed at the same time in perpendicular direction
+let allowedTime = 200; // Maximum time allowed to travel that distance
+let elapsedTime;
+let startTime;
+
 const swipeDetectionArea = document.getElementById("swipe-detection-area");
 
-function checkSwipeDirection() {
-  if (touchEndX < touchStartX && Math.abs(touchStartX - touchEndX) > 50) {
-    // Swiped Left
-    swapImages("right");
-  } else if (
-    touchEndX > touchStartX &&
-    Math.abs(touchStartX - touchEndX) > 50
-  ) {
-    // Swiped Right
+function swipeStart(e) {
+  let touchObj = e.changedTouches[0];
+  startX = touchObj.pageX;
+  startY = touchObj.pageY;
+  startTime = new Date().getTime(); // Record time when finger first makes contact with surface
+  e.preventDefault();
+}
+
+function swipeMove(e) {
+  e.preventDefault(); // Prevent scrolling when inside DIV
+}
+
+function swipeEnd(e) {
+  let touchObj = e.changedTouches[0];
+  distX = touchObj.pageX - startX; // Get horizontal distance traveled by finger while in contact with surface
+  let distY = touchObj.pageY - startY; // Get vertical distance traveled by finger while in contact with surface
+  elapsedTime = new Date().getTime() - startTime; // Get time elapsed
+  if (elapsedTime <= allowedTime) {
+    // First condition for awipe met
+    if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+      // 2nd condition for horizontal swipe met
+      swipeDirection(distX); // if dist traveled is negative, it indicates left swipe
+    }
+  }
+  e.preventDefault();
+}
+
+function swipeDirection(distX) {
+  if (distX < 0) {
+    console.log("Swipe Left");
+    // Handle left swipe
     swapImages("left");
+  } else {
+    console.log("Swipe Right");
+    // Handle right swipe
+    swapImages("right");
   }
 }
 
-// Event listeners for swipe detection area
-swipeDetectionArea.addEventListener("touchstart", (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-swipeDetectionArea.addEventListener("touchend", (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  checkSwipeDirection();
-});
+swipeDetectionArea.addEventListener("touchstart", swipeStart, false);
+swipeDetectionArea.addEventListener("touchmove", swipeMove, false);
+swipeDetectionArea.addEventListener("touchend", swipeEnd, false);
