@@ -89,3 +89,13 @@ function preloadImages(imageArray) {
 
 // Assuming imagePairs is defined as shown previously and contains the URLs of images to be preloaded
 preloadImages(imagePairs);
+
+// Assuming the rest of your script.js file remains unchanged.
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  const leftButton = document.getElementById("left-button");
+  const rightButton = document.getElementById("right-button");
+
+  leftButton.addEventListener("click", () => swapImages("left"));
+  rightButton.addEventListener("click", () => swapImages("right"));
+});
