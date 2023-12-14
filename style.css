@@ -8,12 +8,15 @@
   --image-comparison-slider-handle-width: 50px;
 }
 body {
-  font-family: Helvetica, sans-serif;
+  font-family: 'Sen', sans-serif;
   width: 100%;
   min-height: 100vh;
   display: flex;
 	align-items: center;
   justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Light gray background */
 }
 #image-comparison-slider {
   position: relative;
@@ -153,4 +156,64 @@ body {
   #right-button {
     transform: translateX(60%); /* Move it to the right */
   }
+}
+
+.header {
+  font-family: 'Sen', sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#herbologistName {
+  font-family: 'Sen', sans-serif;
+  font-size: 25px; /* Adjust font size as needed */
+  color: black; /* Set text color to black */
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.5); /* semi-transparent background */
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none; /* Remove underline */
+  transition: transform 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#herbologistName:hover {
+  transform: scale(1.2); /* Enlarge on hover */
+  color: black; /* Maintain black color on hover */
+  text-decoration: none; /* Ensure no underline on hover */
+}
+
+.container {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #333;
+  background-color: #ddd;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.back-button:hover {
+  background-color: #ccc;
+}
+
+h1 {
+  color: #333;
+  font-family: 'Sen', sans-serif;
+}
+
+.content p {
+  text-align: justify;
+  line-height: 1.6;
+  text-indent: 50px;
+  font-family: 'Sen', sans-serif;
 }

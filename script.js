@@ -65,11 +65,69 @@ function swapImages(direction) {
     currentImageIndex =
       currentImageIndex < imagePairs.length - 1 ? currentImageIndex + 1 : 0;
   }
+
+  // Update images
   const newImages = imagePairs[currentImageIndex];
   document.querySelector("#image-comparison-slider img:first-child").src =
     newImages.left;
   document.querySelector("#image-comparison-slider .img-wrapper img").src =
     newImages.right;
+
+  // Synchronize herbologist index with image index
+  currentHerbologist = currentImageIndex;
+  updateHerbologistInfo();
+}
+
+// Array of herbologists with their names and detail page URLs
+const herbologists = [
+  { name: "ALYSSA SACORA | COMMON MILKWEED", url: "alyssa-sacora.html" },
+  { name: "DAVE MEESTERS  | SOCHAN", url: "dave-meesters.html" },
+  { name: "JANET KENT | ANGELICA TRIQUINATA", url: "janet-kent.html" },
+  { name: "JOE HOLLIS | JIAO GU LAN", url: "joe-hollis.html" },
+  { name: "MARC | DANDELION", url: "marc.html" },
+  // Add more herbologists as needed
+];
+
+// Current herbologist index
+let currentHerbologist = 0;
+
+// Initial update
+updateHerbologistInfo();
+
+// Existing function to update herbologist info
+function updateHerbologistInfo() {
+  const herbologistNameElement = document.getElementById("herbologistName");
+  herbologistNameElement.textContent = herbologists[currentHerbologist].name;
+  herbologistNameElement.href = herbologists[currentHerbologist].url;
+}
+
+// Before navigating away, store the current image index
+function goToHerbologistDetail() {
+  localStorage.setItem("lastImageIndex", currentImageIndex);
+  // Navigate to detail page logic...
+}
+
+// When the page loads, check if there's a saved index
+window.onload = function () {
+  const savedIndex = localStorage.getItem("lastImageIndex");
+  if (savedIndex !== null) {
+    currentImageIndex = parseInt(savedIndex, 10); // Convert string back to number
+    swapImagesToIndex(currentImageIndex); // Function to display the image at the saved index
+  }
+};
+
+// Function to swap images to a specific index
+function swapImagesToIndex(index) {
+  // Update images
+  const newImages = imagePairs[index];
+  document.querySelector("#image-comparison-slider img:first-child").src =
+    newImages.left;
+  document.querySelector("#image-comparison-slider .img-wrapper img").src =
+    newImages.right;
+
+  // Synchronize herbologist index with image index
+  currentHerbologist = currentImageIndex;
+  updateHerbologistInfo();
 }
 
 document.addEventListener("keydown", function (event) {
@@ -89,8 +147,6 @@ function preloadImages(imageArray) {
 
 // Assuming imagePairs is defined as shown previously and contains the URLs of images to be preloaded
 preloadImages(imagePairs);
-
-// Assuming the rest of your script.js file remains unchanged.
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const leftButton = document.getElementById("left-button");

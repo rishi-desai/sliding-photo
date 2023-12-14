@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Comparison Slider</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sen:wght@500&family=VT323&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       <button id="left-button" class="slider-button">&larr;</button>
+      <div class="header">
+        <a id="herbologistName" href="#" onclick="goToHerbologistDetail()"
+          >ALYSSA SACORA | COMMON MILKWEED</a
+        >
+      </div>
       <div id="image-comparison-slider">
         <img src="./JPEG/Alyssa.jpg" alt="before" />
         <div class="img-wrapper">
