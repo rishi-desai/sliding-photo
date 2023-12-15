@@ -84,7 +84,7 @@ const herbologists = [
   { name: "DAVE MEESTERS  | SOCHAN", url: "dave-meesters.html" },
   { name: "JANET KENT | ANGELICA TRIQUINATA", url: "janet-kent.html" },
   { name: "JOE HOLLIS | JIAO GU LAN", url: "joe-hollis.html" },
-  { name: "MARC | DANDELION", url: "marc.html" },
+  { name: "MARC WILLIAMS | DANDELION", url: "marc-williams.html" },
   // Add more herbologists as needed
 ];
 
